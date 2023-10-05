@@ -1,6 +1,14 @@
 ## Getting Started
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Pract1 - Calculator (not optimize) yours tasks this optimizing code for Calculator
+Практическая № 1 - Калькулятор (задача оптимизировать код) - рефакторинг.
+
+Pract2 - TimeTracker (write this program timetracker)
+Практическая № 2 - ТаймТрекер (программа создания своей программы подсчёта времени).
+
+По запуску программа должна добавлять время. 
+При паузе должна остановиться и сохранить время.
+При закрытии должна сохранить время, на котором вы были до закрытия программы.
 
 ## Folder Structure
 
