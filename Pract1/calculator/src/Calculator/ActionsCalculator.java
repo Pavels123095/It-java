@@ -60,7 +60,7 @@ public class ActionsCalculator implements ActionListener {
    */
   public String PlusAction(String displayText, char SelectedMethod, double displayResult) {
     String Return;
-    Return = Return + displayText + displayResult;
+    Return = displayText + displayResult;
     return Return;
   }
 
