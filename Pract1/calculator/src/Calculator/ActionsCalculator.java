@@ -27,7 +27,10 @@ public class ActionsCalculator implements ActionListener {
 
     if (ClickedButton == Parent.BtnPlus) {
       SelectedMethod = '+';
-      this.PlusAction();
+      if (displayResult != 0) {
+        displayResult = this.PlusAction(displayText, SelectedMethod);
+      }
+
     } else if (ClickedButton == Parent.BtnMinus) {
       SelectedMethod = '-';
       this.MinusAction();
@@ -49,8 +52,16 @@ public class ActionsCalculator implements ActionListener {
 
   }
 
-  public void PlusAction() {
-
+  /**
+   * @param displayText
+   * @param SelectedMethod
+   * @param displayResult
+   * @return
+   */
+  public String PlusAction(String displayText, char SelectedMethod, double displayResult) {
+    String Return;
+    Return = Return + displayText + displayResult;
+    return Return;
   }
 
   public void MinusAction() {
