@@ -13,7 +13,7 @@ public class App {
     FlowLayout ManagerCalculator;
     JLabel FirstLabel;
     JButton Btn1, Btn2, Btn3, Btn4, Btn5, Btn6, Btn7, Btn8, Btn9, Btn0, BtnPlus,
-            BtnMinus, BtnPoint, BtnEqual, BtnClear, BtnDel;
+            BtnMinus, BtnPoint, BtnEqual, BtnClear, BtnDel, BtnProcent,BtnStep;
     JTextField InputCalc;
     JLabel SummLabel;
     ActionsCalculator ActionEvents;
@@ -35,7 +35,7 @@ public class App {
         this.BtnInitActions(ActionEvents); // initialize this button actions
 
         ControlCalc = new JPanel();
-        GridLayout GridControl = new GridLayout(4, 3);
+        GridLayout GridControl = new GridLayout(5, 3);
         ControlCalc.setLayout(GridControl);
 
         this.ControlAddBtn(ControlCalc); // add this buttons for control panel
@@ -87,6 +87,8 @@ public class App {
         BtnDel = new JButton("/");
         BtnEqual = new JButton("=");
         BtnClear = new JButton("CE");
+        BtnProcent = new JButton("%");
+        BtnStep = new JButton("^");
 
         BtnMinus.addActionListener(Action);
         BtnPlus.addActionListener(Action);
@@ -94,7 +96,8 @@ public class App {
         BtnDel.addActionListener(Action);
         BtnEqual.addActionListener(Action);
         BtnClear.addActionListener(Action);
-
+        BtnProcent.addActionListener(Action);
+        BtnStep.addActionListener(Action);
     }
 
     public void ControlAddBtn(JPanel ControlCalc) {
@@ -114,5 +117,7 @@ public class App {
         ControlCalc.add(BtnDel);
         ControlCalc.add(BtnEqual);
         ControlCalc.add(BtnClear);
+        ControlCalc.add(BtnProcent);
+        ControlCalc.add(BtnStep);
     }
 }

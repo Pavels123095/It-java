@@ -13,7 +13,7 @@ public class ActionsCalculator implements ActionListener {
 
   ActionsCalculator(App Parent) {
     this.Parent = Parent;
-    double displayResult = 0;
+    float displayResult = 0;
     this.CurrentResult = displayResult;
   }
 
@@ -23,29 +23,37 @@ public class ActionsCalculator implements ActionListener {
     JButton ClickedButton = (JButton) e.getSource();
     String displayText = Parent.InputCalc.getText();
     String ClickedButtonLabel = ClickedButton.getText();
-    double displayResult = 0;
+    float displayResult = 0;
       if (!"".equals(displayText)) {
-        displayResult = Double.parseDouble(displayText);
+        displayResult = Float.parseFloat(displayText);
       }
 
     if (ClickedButton == Parent.BtnPlus) {
 
       SelectedMethod = '+';
-      displayResult = Double.parseDouble(displayText);
+      if (!emptyString(displayText)) {
+        displayResult = Float.parseFloat(displayText);
+      }
       CurrentResult = displayResult;
       Parent.InputCalc.setText("");
 
     } else if (ClickedButton == Parent.BtnMinus) {
 
       SelectedMethod = '-';
-      displayResult = Double.parseDouble(displayText);
+
+      if (!emptyString(displayText)) {
+        displayResult = Float.parseFloat(displayText);
+      }
+
       CurrentResult = displayResult;
       Parent.InputCalc.setText("");
 
     } else if (ClickedButton == Parent.BtnPoint) {
 
       SelectedMethod = '*';
-      displayResult = Double.parseDouble(displayText);
+      if (!emptyString(displayText)) {
+        displayResult = Float.parseFloat(displayText);
+      }
       CurrentResult = displayResult;
       Parent.InputCalc.setText("");
 
@@ -57,15 +65,37 @@ public class ActionsCalculator implements ActionListener {
     } else if (ClickedButton == Parent.BtnDel) {
 
       SelectedMethod = '/';
-      displayResult = Double.parseDouble(displayText);
+      if (!emptyString(displayText)) {
+        displayResult = Float.parseFloat(displayText);
+      }
+      CurrentResult = displayResult;
+      Parent.InputCalc.setText("");
+
+     } else if (ClickedButton == Parent.BtnProcent) {
+
+      SelectedMethod = '%';
+      if (!emptyString(displayText)) {
+        displayResult = Float.parseFloat(displayText);
+      }
+      CurrentResult = displayResult;
+      Parent.InputCalc.setText("");
+
+    } else if (ClickedButton == Parent.BtnStep) {
+
+      SelectedMethod = '^';
+      if (!emptyString(displayText)) {
+        displayResult = Float.parseFloat(displayText);
+      }
       CurrentResult = displayResult;
       Parent.InputCalc.setText("");
 
     } else if (ClickedButton == Parent.BtnEqual) {
 
-      displayResult = Double.parseDouble(displayText);
+      if (!emptyString(displayText)) {
+        displayResult = Float.parseFloat(displayText);
+      }
       CurrentResult = this.ResultAction(Parent, displayResult ,SelectedMethod, CurrentResult);
-      Parent.InputCalc.setText(String.valueOf(""+ CurrentResult));
+      Parent.InputCalc.setText(String.valueOf(CurrentResult));
 
     } else {
       Parent.InputCalc.setText(displayText + ClickedButtonLabel);
@@ -74,17 +104,46 @@ public class ActionsCalculator implements ActionListener {
   }
 
   public double ResultAction(App parent, double Value, char Method, double Result) {
-    if (Method == '+') {
-      Result += Value;
-    } else if (Method == '-') {
-      Result -= Value;
-    } else if (Method == '/') {
-      Result /= Value;
-    } else if (Method == '*') {
-      Result *= Value;
-    }
 
-    return Result;
+      if (Method == '+') {
+        Result += Value;
+      } else if (Method == '-') {
+        Result -= Value;
+      } else if (Method == '/') {
+        Result /= Value;
+      } else if (Method == '*') {
+        Result *= Value;
+      } else if (Method == '%') {
+        Result %= Value;
+      } else if (Method == '^') {
+        Result = pow(Result,Value);
+      }
+
+      return Result;
+
+  }
+
+  public static int pow(double value, double powValue) {
+    int result = 1;
+    for (int i = 1; i <= powValue; i++) {
+      result = (int) (result * value);
+    }
+    return  result;
+  }
+
+  private boolean emptyDouble(double result) {
+    if (result == 0) {
+      return true;
+    }  else {
+      return false;
+    }
+  }
+
+  private boolean emptyString(String result) {
+    if ("".equals(result)) {
+      return true;
+    }
+    return false;
   }
 
   public void ClearAction(App parent) {
